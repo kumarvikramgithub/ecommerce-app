@@ -1,23 +1,21 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Navbar from "./Components/Navbar.jsx";
+import Products from "./Components/Products.jsx";
+import Order from "./Components/Order.jsx";
+import TrackOrder from "./Components/TrackOrder.jsx";
+import { useSelector } from "react-redux";
 
+import Cart from "./Components/Cart.jsx";
 function App() {
+  const isDisplayCart = useSelector((state) => {
+    return state.data.isDisplayCart;
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="w-screen">
+      <Navbar />
+      {isDisplayCart ? <Cart /> : <Products />}
+      <TrackOrder />
+      <Order/>
     </div>
   );
 }
